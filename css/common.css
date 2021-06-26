@@ -1,0 +1,471 @@
+/* COMMON */
+body {
+  /* 완전 검은색 보다는 어두운 회색이 디자인 측면에서 아주 좋소 */
+  color: #333;
+  /* 대부분의 사이트의 폰트크기는 보통 16px이니 명시해주자 */
+  font-size: 16px;
+  /* 기본 굵기도 일반적인 400을 명시해주자 */
+  font-weight: 400px;
+  /* 행간도 일반적으로 사용자도 읽기에 1.4 정도가 적당하다 */
+  line-height: 1.4;
+
+  font-family: 'Dancing Script', cursive;
+
+}
+
+img {
+  display: block;
+}
+
+a {
+  /* 링크 태그가 밑줄이 나오는 게 디자인 측면에서 너무 보기 안좋으므로 제거한다. */
+  text-decoration: none;
+}
+
+/* inner도 통상적으로 많이 사용하니까 공통요소고 높이만 따로따로 설정. */
+.inner {
+  /* 화면확대/축소 따라 안의 내용을 1100px에 모아서 가운데정렬 된 상태로 보여질 수 있도록 하는 클래스 
+    안의 내용 (1100px) 보다 더 많이 확대되면 그 때부터는 가운데 정렬이 되지 X 보여지게 한다.
+  */
+  /* inner 안의 내용의 너비,높이 */
+  width: 1100px;
+  /* 가운데 정렬 */
+  margin: 0 auto;
+  /* 로고의 수직,수평정렬을 위함 */
+  position: relative;
+}
+
+.btn {
+  width: 130px;
+  padding: 10px;
+  border: 2px solid #333;
+  border-radius: 4px;
+  color: #333;
+  font-size: 16px;
+  font-weight: 700;
+  text-align: center;
+  cursor: pointer;
+  box-sizing: border-box;
+  display: block;
+  transition: .4s;
+}
+
+.btn:hover {
+  background-color: #333;
+  color: #fff
+}
+
+.btn.btn--reverse {
+  background-color: #333;
+  color: #fff;
+}
+
+.btn.btn--reverse:hover {
+  background-color: transparent;
+  color: #333;
+}
+
+.btn.btn--brown {
+  color: #592b18;
+  border-color: #592b18;
+}
+
+.btn.btn--brown:hover {
+  color: #fff;
+  background-color: #592b18;
+}
+
+.btn.btn--gold {
+  color: #D9AA8A;
+  border-color: #D9AA8A;
+}
+
+.btn.btn--gold:hover {
+  color: #fff;
+  background-color: #D9AA8A;
+}
+
+.btn.btn--white {
+  color: #FFF;
+  border-color: #FFF;
+}
+
+.btn.btn--white :hover {
+  color: #333;
+  border-color: #FFF;
+}
+
+.back-to-position {
+  opacity: 0;
+  transition: 1s;
+}
+
+.back-to-position.to-right {
+  transform: translateX(-150px);
+}
+
+.back-to-position.to-left {
+  transform: translateX(150px);
+}
+
+.show .back-to-position {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.show .back-to-position.delay-0 {
+  transition-delay: 0s;
+}
+
+.show .back-to-position.delay-1 {
+  transition-delay: .3s;
+}
+
+.show .back-to-position.delay-2 {
+  transition-delay: .6s;
+
+}
+
+.show .back-to-position.delay-3 {
+  transition-delay: .9s;
+
+}
+
+/* HEADER */
+header {
+  width: 100%;
+  /* 헤더 디자인 지정 */
+  background-color: #f6f5f0;
+  border-bottom: 1px solid #c8c8c8;
+  /* badge의 상대부모 이므로 position부여*/
+  position: fixed;
+  /* 문제점, fixed나 absolute는 width를 최소로 쓰려고함 inline */
+  top: 0;
+  /* 근데 일정 스크롤 내리면 badge가 안보이게 하고싶음-> js */
+  z-index: 9;
+}
+
+/* inner는 통상적으로 건너뛰는 게 좋습니다. */
+header>.inner {
+  height: 120px;
+
+}
+
+header .logo {
+  /* 로고의 높이 */
+  height: 75px;
+  /* 로고의 수직정렬을 위한 기법 */
+  position: absolute;
+  /* top,bottom,left : 부모 기준으로 왼쪽부터, 위부터, 아래부터 의 위치Position을 지정. */
+  top: 0;
+  bottom: 0;
+  left: 0;
+  /* margin을 auto로 지정하면, 전체 너비/높이에서 현재 대상의 너비 높이를 뺀 나머지를 정확히 반띵한다=가운데정렬 */
+  margin: auto;
+}
+
+header .sub-menu {
+  /* 제대로 기능을 모두 만들었으면 sub메뉴는 우상단에 보이도록 배치해야함 */
+  position: absolute;
+  top: 10px;
+  right: 0;
+  display: flex;
+}
+
+/*HTML의 구조먼저 옮겨놓고 스타일을 작성하는 것은 좋은 방법이다. 
+ 우선 상위태그부터 모두 빠뜨리지 않고 적어줘야 한다. 그래야 의도치 않은 style문제를 막는다.
+최대한 구체적으로 상위 선택자들을 적어서 정확한 범위를 적어야 한다. */
+header .sub-menu ul.menu {
+  /* font-family 를 따로 명시한다. */
+  font-family: Arial, sans-serif;
+  /* 수평으로 항목들을 정렬 */
+  display: flex;
+}
+
+header .sub-menu ul.menu li {
+  position: relative;
+}
+
+/* 각 메뉴 마다 있는 구분선을 나타내기 위하여 */
+header .sub-menu ul.menu li::before {
+  content: "";
+  /* before 클래스는 기본적으로 inline이므로 block으로  */
+  /* display: block; */
+  width: 1px;
+  height: 12px;
+  /* 디자인 측면 : 밝은 회색으로 */
+  background-color: #e5e5e5;
+  /* li사이사이에 나올 수 있도록 position을 설정 */
+  /* position : absolute 하면 자동으로 display:block이므로  */
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+}
+
+/* 근데 맨 첫번째 메뉴의 왼쪽에도 구분선이 생겼다. 이는 필요하지 않다. */
+header .sub-menu ul.menu li:first-child::before {
+  display: none;
+}
+
+header .sub-menu ul.menu li a {
+  font-size: 12px;
+  /* 링크를 제대로 클릭해줘야 하는데 글자가 작아지면 클릭이 힘들어지므로 패딩을 넉넉히주자 */
+  padding: 11px 16px;
+  /* 근데 a태그는 inline태그라서 패딩이 정상적으로 작동하지 않는 문제점이 있기에 block으로  */
+  display: block;
+  /* 근데 또 block 으로 하면 width의 기본값이 최대한 많이 라서 inner클래스의 배경색(orange)가 가려진다 */
+  /* 링크의 글자색 (진한 회색)을 명시하여 변경해준다. */
+  color: #656565;
+
+}
+
+/* 마우스 올리면 이것이 a 태그라는것을 알수 있도록 색상을 검정색으로 더 진하게 */
+header .sub-menu ul.menu li a:hover {
+  color: #000;
+}
+
+header .sub-menu .search {
+  height: 34px;
+  /* 돋보기 아이콘의 상대부모이므로 position값이 배정되지않았기에 relative로 배정해준다 */
+  position: relative;
+}
+
+header .sub-menu .search input {
+  width: 36px;
+  height: 34px;
+  padding: 4px 10px;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+  border-radius: 5px;
+  /* input을 클릭하면 outline 파란색 선이 생기는데 이를 별도로 사용하지 않음 */
+  outline: none;
+  background-color: #fff;
+  color: #777;
+  /* focus될때 너무 한번에 변화니까 전환 효과를 주어 부드럽게 연출 */
+  transition: width .4s;
+  font-size: 12px;
+}
+
+/* input이 입력하기에는 너무 좁으니까 포커스 되었을 때 늘려주고 색에도 변화를 주자 */
+header .sub-menu .search input:focus {
+  width: 190px;
+  border-color: #669900;
+}
+
+header .sub-menu .search .material-icons {
+  /* 배치를 위해 absolute 로 선언하고 누가 부모인지 따라올라가본다. */
+  position: absolute;
+  /* 수직 가운데 정렬 */
+  height: 24px;
+  top: 0;
+  bottom: 0;
+  /* search 의 오른쪽에서 5px떨어진 곳에 위치하도록 하면 , search가 block태그라서 
+    search는 가로로 최대한 늘어나려고 하고 이는 결국 부모인 submenu 태그 의 가로만큼 늘어나서 
+    원하는 배치가 안되게 된다.
+    따라서-> submenu 태그를 flex로 배정
+  */
+  right: 5px;
+  margin: auto;
+  /* 문제점 : 돋보기를 클릭해도 검색 창이 넓어지면서 검색이 되도록 하는UI를 설계해야함
+  이는 JS 를 통해서 이루어져야 함.->main.js
+   */
+  /* 밑의 돋보기 사라지게 하는 것에 연출을 주기 위함 */
+  transition: .4s;
+}
+
+/* 돋보기 가 focus된 상태이면, 안보이도록 하여 검색창이 깔끔하게  */
+header .sub-menu .search.focused .material-icons {
+  opacity: 0;
+}
+
+header .main-menu {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  z-index: 1;
+  display: flex;
+}
+
+header .main-menu .item {}
+
+header .main-menu .item .item__name {
+  padding: 10px 20px 34px 20px;
+  font-family: ARial, sans-serif;
+  font-size: 13;
+}
+
+header .main-menu .item:hover .item__name {
+  background-color: #2c2a29;
+  color: #669900;
+  border-radius: 6px 6px 0 0;
+}
+
+
+header .main-menu .item .item__contents {
+  width: 100%;
+  position: fixed;
+  left: 0;
+  display: none;
+  /* top이나 bottom 속성을 사용하지 않아 수직 위치 값이 없다면 
+요소의 원래 위치를 그대로 사용합니다. 
+만약 position: absolute; 를 사용했다면 (위치상)부모 요소를 
+기준으로 하므로 화면의 뷰포트 좌우 끝까지 늘어날 수 없게 됩니다. */
+
+}
+
+header .main-menu .item:hover .item__contents {
+  display: block;
+}
+
+header .main-menu .item .item__contents .contents__menu {
+  background-color: #2c2a29;
+}
+
+/* inner 태그인데 ul이 밑에 또있으니까  직계로 inner만 선택*/
+header .main-menu .item .item__contents .contents__menu>ul {
+  display: flex;
+  padding: 20px 0;
+}
+
+header .main-menu .item .item__contents .contents__menu>ul>li {
+  width: 220px;
+}
+
+header .main-menu .item .item__contents .contents__menu>ul>li h4 {
+  padding: 3px 0 12px 0;
+  font-size: 14px;
+  color: #fff;
+}
+
+header .main-menu .item .item__contents .contents__menu>ul>li ul li {
+  padding: 5px 0;
+  font-size: 12px;
+  color: #999;
+  cursor: pointer;
+}
+
+header .main-menu .item .item__contents .contents__menu>ul>li ul li:hover {
+  color: #669900;
+}
+
+header .main-menu .item .item__contents .contents__texture {
+  padding: 26px 0;
+  font-size: 12px;
+  background-image: url("../images/main_menu_pattern.jpg");
+
+}
+
+header .main-menu .item .item__contents .contents__texture h4 {
+  color: #999;
+  font-weight: 700;
+}
+
+header .main-menu .item .item__contents .contents__texture p {
+  color: #690;
+  margin: 4px 0 14px;
+}
+
+header .badges {
+  position: absolute;
+  top: 132px;
+  right: 12px;
+}
+
+header .badges .badge {
+  /* 모서리랑 디자인 */
+  border-radius: 10px;
+  overflow: hidden;
+  margin-bottom: 12px;
+  box-shadow: 4px 4px 10px rgba(0, 0, 0, .15);
+  cursor: pointer;
+}
+/* FOOTER */
+footer {
+  background-color: #272727;
+  border-top: 1px solid #333;
+}
+
+footer .inner {
+  padding: 40px 0 60px 0;
+}
+
+footer .menu {
+  display: flex;
+  justify-content: center;
+}
+
+footer .menu li {
+  position: relative;
+}
+
+footer .menu li::before {
+  content: "";
+  width: 3px;
+  height: 3px;
+  background-color: #555;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: -1px;
+  margin: auto
+}
+
+footer .menu li:last-child::before {
+  display: none;
+}
+
+footer .menu li a {
+  color: #ccc;
+  font-size: 12px;
+  font-weight: 700;
+  padding: 15px;
+  display: block;
+}
+
+footer .menu li a.green {
+  color: #690;
+}
+
+footer .btn-group {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+}
+
+footer .btn-group .btn {
+  font-size: 12px;
+  margin-right: 10px;
+}
+
+footer .btn-group .btn:last-child {
+  margin-right: 0;
+}
+
+footer .info {
+  margin-top: 30px;
+  text-align: center;
+}
+
+footer .info span {
+  margin-right: 20px;
+  color: #999;
+  font-size: 12px;
+}
+
+footer .info span:last-child {
+  margin-right: 0;
+}
+
+footer .copyright {
+  color: #999;
+  font-size: 12px;
+  text-align: center;
+  margin-top: 12px;
+}
+
+footer .logo {
+  /* img 요소가 display:block; + margin 0 auto; 인 경우 width 속성이 없어도 가운데 정렬이 가능합니다 
+  우리는 현재 프로젝트에서 img 요소에 display: block ;을 지정하였습니다. (공통요소) */
+  margin: 30px auto 0;
+}
